@@ -14,16 +14,20 @@ import particle
 # TODO: Implement this function
 def init_molecule():
     """Create Particles p1 and p2 inside boundaries and return a molecule
-    connecting them"""
-
-    pass
-
+    connecting them"""    
+    p1 = Particle(0.4, 0,5, 1)
+    p2 = Particle(0.56, 0.24, 2)
+    
+    mol = Molecule(p1.xpos, p1.ypos, p2.xpos, p2.ypos, p1.m, p2.m, 10, 10)
+    
+    return mol
 
 # TODO: Implement this function
 def time_step(dt, mol):
     """Sets new positions and velocities of the particles attached to mol"""
     
-    pass
+    newV = mol.get_disp()/(dt/2) + (mol.get_force()/(mol.m1+mol.m2))*dt
+    newX = mol.posX1 + newV*dt
 
 
 #############################################
