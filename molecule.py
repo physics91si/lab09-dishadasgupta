@@ -5,23 +5,25 @@
 import numpy as np
 
 class Molecule:  
-   
-    
-    def __init__(self, Position1_X, Position1_Y, Position2_X, Position2_Y, M1, M2, k, L0):
+    """Stores information about a molecule with two particles' positions and masses, spring constant, and equilibrium length ."""
+       
+    def __init__(self, p1x, p1y, p2x, p2y, p1m, p2m, k, L0):
         """Create a particle with position (numpy array of len 2) and mass."""
-        self.posX1 = Position1_X
-        self.posY1 = Position1_Y
-        self.posX2 = Position2_X
-        self.posY2 = Position2_Y
-        self.m1 = M1
-        self.m2 = M2
+        self.p1x = p1x
+        self.p1y = p1y
+        self.p2x = p2x
+        self.p2y = p2y
+        self.m1 = p1m
+        self.m2 = p2m
         self.spr = k
         self.eq = L0
     
     def get_disp(self):
-        return (((self.posX2 - self.posX1)**2) + ((self.posY2 - self.posY1)**2))**(1/2)
+        """Returns the vector distance between particle 1 and 2"""
+        return (((self.p2x - self.p1x)**2) + ((self.p2y - self.p1y)**2))**(1/2)
     
     def get_force(self):
+        """Returns the force due to the spring on particle 1"""
         stretch = self.get_disp()
         return self.spr*(stretch - self.eq)
     
